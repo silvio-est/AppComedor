@@ -10,32 +10,32 @@ public class Inicio extends javax.swing.JPanel {
     }
 
     private void initStyle() {
-        jLabel1.putClientProperty("FlatLaf.style", "font: $h2.font");
-        jLabel1.setForeground(Color.black);
+        jLabelTitulo.putClientProperty("FlatLaf.style", "font: $h2.font");
+        jLabelTitulo.setForeground(Color.black);
         
-        jLabel2.putClientProperty("FlatLaf.style", "font: $h2.font");
-        jLabel2.setForeground(Color.black);
+        jLabelCabeza.putClientProperty("FlatLaf.style", "font: $h2.font");
+        jLabelCabeza.setForeground(Color.black);
         
-        jLabel3.putClientProperty("FlatLaf.style", "font: $h2.font");
-        jLabel3.setForeground(Color.black);
+        jLabelCabeza2.putClientProperty("FlatLaf.style", "font: $h2.font");
+        jLabelCabeza2.setForeground(Color.black);
         
-        jLabel4.putClientProperty("FlatLaf.style", "font: $h2.font");
-        jLabel4.setForeground(Color.black);
+        jLabelTexto.putClientProperty("FlatLaf.style", "font: $h2.font");
+        jLabelTexto.setForeground(Color.black);
         
-        jLabel5.putClientProperty("FlatLaf.style", "font: $h3.font");
-        jLabel5.setForeground(Color.black);
+        jLabelTexto1.putClientProperty("FlatLaf.style", "font: $h3.font");
+        jLabelTexto1.setForeground(Color.black);
         
-        jLabel6.putClientProperty("FlatLaf.style", "font: $h3.font");
-        jLabel6.setForeground(Color.black);
+        jLabelTexto2.putClientProperty("FlatLaf.style", "font: $h3.font");
+        jLabelTexto2.setForeground(Color.black);
         
-        jLabel7.putClientProperty("FlatLaf.style", "font: $h3.font");
-        jLabel7.setForeground(Color.black);
+        jLabelTexto3.putClientProperty("FlatLaf.style", "font: $h3.font");
+        jLabelTexto3.setForeground(Color.black);
         
-        jLabel8.putClientProperty("FlatLaf.style", "font: $h3.font");
-        jLabel8.setForeground(Color.black);
+        jLabelTexto4.putClientProperty("FlatLaf.style", "font: $h3.font");
+        jLabelTexto4.setForeground(Color.black);
         
-        jLabel9.putClientProperty("FlatLaf.style", "font: $h3.font");
-        jLabel9.setForeground(Color.black);
+        jLabelTexto5.putClientProperty("FlatLaf.style", "font: $h3.font");
+        jLabelTexto5.setForeground(Color.black);
         
         jLabelDesarroladores.putClientProperty("FlatLaf.style", "font: $h3.font");
         jLabelDesarroladores.setForeground(Color.black);
@@ -48,52 +48,54 @@ public class Inicio extends javax.swing.JPanel {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelCabeza = new javax.swing.JLabel();
+        jLabelCabeza2 = new javax.swing.JLabel();
+        jLabelTexto = new javax.swing.JLabel();
+        jLabelTexto1 = new javax.swing.JLabel();
+        jLabelTexto2 = new javax.swing.JLabel();
+        jLabelTexto3 = new javax.swing.JLabel();
+        jLabelTexto4 = new javax.swing.JLabel();
+        jLabelTexto5 = new javax.swing.JLabel();
         jLabelDesarroladores = new javax.swing.JLabel();
+        jLabelLogoUnah = new javax.swing.JLabel();
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
         Background.setPreferredSize(new java.awt.Dimension(780, 450));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Bienvenido al Sistema de Gestion del Comedor de la Universidad Agraria de la Habana");
-        Background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 750, 56));
+        jLabelTitulo.setText("Bienvenido al Sistema de Gestion del Comedor de la Universidad Agraria de la Habana");
+        Background.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 750, 56));
 
-        jLabel2.setText("El uso de este Programa tiene como objetivo la correcta gestion del comedor                                      ");
-        Background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, 60));
+        jLabelCabeza.setText("El uso de este Programa tiene como objetivo la correcta gestion del comedor                                      ");
+        Background.add(jLabelCabeza, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, 60));
 
-        jLabel3.setText("guardando la informacion de los usuarios que pasen a este");
-        Background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
+        jLabelCabeza2.setText("guardando la informacion de los usuarios que pasen a este");
+        Background.add(jLabelCabeza2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
-        jLabel4.setText("Las herramientas disponibles son:");
-        Background.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, -1, -1));
+        jLabelTexto.setText("Las herramientas disponibles son:");
+        Background.add(jLabelTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, -1, -1));
 
-        jLabel5.setText("-Registros de Estudiantes");
-        Background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, -1));
+        jLabelTexto1.setText("-Registros de Estudiantes");
+        Background.add(jLabelTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
 
-        jLabel6.setText("-Registro de Trabajadores");
-        Background.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, -1, -1));
+        jLabelTexto2.setText("-Registro de Trabajadores");
+        Background.add(jLabelTexto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, -1, -1));
 
-        jLabel7.setText("-Gestion de Usuarios");
-        Background.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, -1));
+        jLabelTexto3.setText("-Gestion de Usuarios");
+        Background.add(jLabelTexto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, -1));
 
-        jLabel8.setText("Gestion de Trabajadores");
-        Background.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, -1));
+        jLabelTexto4.setText("-Gestion de Trabajadores");
+        Background.add(jLabelTexto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
 
-        jLabel9.setText("-Administracion");
-        Background.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, -1, -1));
-        Background.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 270, 260));
+        jLabelTexto5.setText("-Administracion");
+        Background.add(jLabelTexto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, -1, -1));
 
         jLabelDesarroladores.setText("Desarrollado por un equipo de ING de Primer Año de INF");
         Background.add(jLabelDesarroladores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, -1, -1));
+
+        jLabelLogoUnah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoUNAH.png"))); // NOI18N
+        Background.add(jLabelLogoUnah, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, 50, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,16 +116,16 @@ public class Inicio extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCabeza;
+    private javax.swing.JLabel jLabelCabeza2;
     private javax.swing.JLabel jLabelDesarroladores;
+    private javax.swing.JLabel jLabelLogoUnah;
+    private javax.swing.JLabel jLabelTexto;
+    private javax.swing.JLabel jLabelTexto1;
+    private javax.swing.JLabel jLabelTexto2;
+    private javax.swing.JLabel jLabelTexto3;
+    private javax.swing.JLabel jLabelTexto4;
+    private javax.swing.JLabel jLabelTexto5;
+    private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
 }

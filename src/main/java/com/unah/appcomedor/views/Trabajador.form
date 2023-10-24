@@ -89,12 +89,12 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelTitulo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Verificar si el estudiante puede pasar al comedor"/>
+            <Property name="text" type="java.lang.String" value="Verificar si el trabajdor puede pasar al comedor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelID">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID del Estudiante"/>
+            <Property name="text" type="java.lang.String" value="ID del Trabajador"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
         </Component>

@@ -3,6 +3,9 @@ package com.unah.appcomedor;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import com.unah.appcomedor.views.Estudiantes;
 import com.unah.appcomedor.views.Inicio;
+import com.unah.appcomedor.views.RegistroEstudiantes;
+import com.unah.appcomedor.views.RegistroTrabajadores;
+import com.unah.appcomedor.views.Trabajador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
@@ -103,6 +106,7 @@ public class AppComedor extends javax.swing.JFrame {
         jLabelMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Comedor");
         setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,7 +124,8 @@ public class AppComedor extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Principal");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
+        jButton1.setText("Inicio");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -134,6 +139,7 @@ public class AppComedor extends javax.swing.JFrame {
         jPanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 136, 240, 70));
 
         jButton2.setBackground(new java.awt.Color(102, 102, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estudiantes.png"))); // NOI18N
         jButton2.setText("Estudiantes ");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
@@ -147,6 +153,7 @@ public class AppComedor extends javax.swing.JFrame {
         jPanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 240, 80));
 
         jButton3.setBackground(new java.awt.Color(102, 102, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trabajador.png"))); // NOI18N
         jButton3.setText("Trabajadores");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
@@ -160,6 +167,7 @@ public class AppComedor extends javax.swing.JFrame {
         jPanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 240, 80));
 
         jButton4.setBackground(new java.awt.Color(102, 102, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/registroEstudiantes.png"))); // NOI18N
         jButton4.setText("Registro de Estudiantes ");
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
@@ -173,6 +181,7 @@ public class AppComedor extends javax.swing.JFrame {
         jPanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 240, 80));
 
         jButton5.setBackground(new java.awt.Color(102, 102, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/registroTrabajadores.png"))); // NOI18N
         jButton5.setText("Registro de Trabajadores");
         jButton5.setBorder(null);
         jButton5.setBorderPainted(false);
@@ -186,6 +195,7 @@ public class AppComedor extends javax.swing.JFrame {
         jPanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 80));
 
         jButton6.setBackground(new java.awt.Color(102, 102, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administracion.png"))); // NOI18N
         jButton6.setText("Administracion");
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -234,11 +244,11 @@ public class AppComedor extends javax.swing.JFrame {
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         jLabelMensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -252,10 +262,10 @@ public class AppComedor extends javax.swing.JFrame {
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,15 +305,15 @@ public class AppComedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+        showJPanel(new Trabajador());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
+      showJPanel(new RegistroEstudiantes());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
+        showJPanel(new RegistroTrabajadores());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

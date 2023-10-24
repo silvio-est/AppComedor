@@ -3,18 +3,18 @@ package com.unah.appcomedor.views;
 
 import java.awt.Color;
 
-public class Estudiantes extends javax.swing.JPanel {
+public class Trabajador extends javax.swing.JPanel {
 
 
-    public Estudiantes() {
+    public Trabajador() {
         initComponents();
         initStyle();
     }
     private void initStyle() {
-        styleJLabe();
+        initJLabe();
     }
     
-    private void styleJLabe(){
+    private void initJLabe(){
         jLabelTitulo.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelTitulo.setForeground(Color.black);
         
@@ -34,9 +34,9 @@ public class Estudiantes extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jLabelTitulo.setText("Verificar si el estudiante puede pasar al comedor");
+        jLabelTitulo.setText("Verificar si el trabajdor puede pasar al comedor");
 
-        jLabelID.setText("ID del Estudiante");
+        jLabelID.setText("ID del Trabajador");
         jLabelID.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabelAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aceptar.png"))); // NOI18N
