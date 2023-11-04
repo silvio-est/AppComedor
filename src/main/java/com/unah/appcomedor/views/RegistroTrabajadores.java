@@ -41,6 +41,7 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
 
         jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
         jLabelBuscar.setText("Buscar");
+        jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

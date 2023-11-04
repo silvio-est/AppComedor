@@ -1,6 +1,9 @@
 package com.unah.appcomedor.views;
 
+import com.unah.appcomedor.DAO.EstudianteDAO;
+import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 public class RegistroEstudiantes extends javax.swing.JPanel {
 
@@ -8,6 +11,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
     public RegistroEstudiantes() {
         initComponents();
         initStyle();
+        loadEstudiantes();
     }
     
     private void initStyle(){
@@ -21,7 +25,20 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
         
         jLabelID.putClientProperty("FlatLaf.style", "font: $h4.font");
         jLabelID.setForeground(Color.black);
-    }    
+    }
+    
+    private void loadEstudiantes(){
+        try {
+            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            estudiantesInterface.listar().forEach((u) -> model.addRow(new Object[]{
+                u.getIdEstudiante(), u.getNombre(), u.getNombre(),
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getPaso()}) );
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -41,28 +58,36 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
 
         jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
         jLabelBuscar.setText("Buscar");
+        jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Primer Apellido", "Segundo Apellido", "ID", "Carrera", "Año", "Entro"
+                "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Carrera", "Año", "Entro"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Año");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

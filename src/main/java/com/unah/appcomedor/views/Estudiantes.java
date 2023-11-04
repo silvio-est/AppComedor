@@ -67,6 +67,13 @@ public class Estudiantes extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Primer Apellido");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Segundo Apellido");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Carrera");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Año");
+        }
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
