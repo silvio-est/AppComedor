@@ -32,8 +32,8 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
             EstudiantesInterface estudiantesInterface = new EstudianteDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             estudiantesInterface.listar().forEach((u) -> model.addRow(new Object[]{
-                u.getIdEstudiante(), u.getNombre(), u.getNombre(),
-                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getPaso()}) );
+                u.getIdEstudiante(), u.getNombre(),
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getYear(), u.getPaso()}) );
             
         } catch (Exception e) {
             System.out.println(e);
