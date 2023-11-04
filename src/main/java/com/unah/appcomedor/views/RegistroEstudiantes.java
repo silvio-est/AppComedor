@@ -16,6 +16,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
     
     private void initStyle(){
         initJLabe();
+        jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el ID del estudiante a buscar");
         
     }
     
@@ -25,13 +26,15 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
         
         jLabelID.putClientProperty("FlatLaf.style", "font: $h4.font");
         jLabelID.setForeground(Color.black);
+        
+        
     }
     
     private void loadEstudiantes(){
         try {
             EstudiantesInterface estudiantesInterface = new EstudianteDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            estudiantesInterface.listar().forEach((u) -> model.addRow(new Object[]{
+            estudiantesInterface.listarAll().forEach((u) -> model.addRow(new Object[]{
                 u.getIdEstudiante(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getYear(), u.getPaso()}) );
             
@@ -60,6 +63,11 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
         jLabelBuscar.setText("Buscar");
         jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabelBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBuscarMouseClicked(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,9 +93,6 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Año");
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,6 +130,21 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMouseClicked
+        try {
+            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            String id = jTextFieldID.getText();
+            model.setRowCount(0);
+            estudiantesInterface.listarId(id).forEach((u) -> model.addRow(new Object[]{
+                u.getIdEstudiante(), u.getNombre(),
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getYear(), u.getPaso()}) );
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jLabelBuscarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
