@@ -8,12 +8,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
 
-    @Override
-    public int obtenerID() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
 
     @Override
     public List<Estudiante> listarAll() throws Exception {
@@ -51,10 +47,10 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
     @Override
     public List<Estudiante> listarId(String nombre) throws Exception {
         List<Estudiante> listaBuscar = null;
-        
+
         try {
             this.Conectar();
-            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM estudiantes WHERE Nombre LIKE '%"+ nombre + "%'");
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM estudiantes WHERE Nombre LIKE '%" + nombre + "%'");
             listaBuscar = new ArrayList();
             ResultSet rs = st.executeQuery();
 
@@ -80,6 +76,39 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
             this.Cerrar();
         }
         return listaBuscar;
+    }
+
+    @Override
+    public int pasoComedor(int idEstudiante) throws Exception {
+        int pasoComedor = 0;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT Paso FROM estudiantes WHERE id_estudiante = ? ");
+            st.setInt(1, idEstudiante);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getBoolean("Paso")) {
+                    pasoComedor = 1;
+                }
+                else if (rs.getBoolean("Paso") == false) {
+                    pasoComedor = 0;
+                    
+                }
+            }
+            else{
+                pasoComedor = -1;
+            }
+
+            rs.close();
+            st.close();
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return pasoComedor;
     }
 
 }

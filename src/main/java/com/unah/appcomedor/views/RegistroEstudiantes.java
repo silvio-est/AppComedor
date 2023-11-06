@@ -135,9 +135,9 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
         try {
             EstudiantesInterface estudiantesInterface = new EstudianteDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            String id = jTextFieldID.getText();
+            String idEstudiante = jTextFieldID.getText();
             model.setRowCount(0);
-            estudiantesInterface.listarId(id).forEach((u) -> model.addRow(new Object[]{
+            estudiantesInterface.listarId(idEstudiante).forEach((u) -> model.addRow(new Object[]{
                 u.getIdEstudiante(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getYear(), u.getPaso()}) );
             
