@@ -45,7 +45,7 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
     }
 
     @Override
-    public List<Estudiante> listarId(String nombre) throws Exception {
+    public List<Estudiante> listarNombre(String nombre) throws Exception {
         List<Estudiante> listaBuscar = null;
 
         try {

@@ -3,46 +3,59 @@ package com.unah.appcomedor.views;
 import com.unah.appcomedor.DAO.EstudianteDAO;
 import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroEstudiantes extends javax.swing.JPanel {
-
 
     public RegistroEstudiantes() {
         initComponents();
         initStyle();
         loadEstudiantes();
     }
-    
-    private void initStyle(){
+
+    private void initStyle() {
         initJLabe();
         jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el ID del estudiante a buscar");
-        
+
     }
-    
-    private void initJLabe(){
+
+    private void initJLabe() {
         jLabelTitulo.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelTitulo.setForeground(Color.black);
-        
+
         jLabelID.putClientProperty("FlatLaf.style", "font: $h4.font");
         jLabelID.setForeground(Color.black);
-        
-        
+
     }
-    
-    private void loadEstudiantes(){
+
+    private void loadEstudiantes() {
         try {
             EstudiantesInterface estudiantesInterface = new EstudianteDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             estudiantesInterface.listarAll().forEach((u) -> model.addRow(new Object[]{
                 u.getIdEstudiante(), u.getNombre(),
-                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getYear(), u.getPaso()}) );
-            
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear(), u.getPaso()}));
+
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    private void buscarEstudiantesNombre() {
+        try {
+            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            String idEstudiante = jTextFieldID.getText();
+            model.setRowCount(0);
+            estudiantesInterface.listarNombre(idEstudiante).forEach((u) -> model.addRow(new Object[]{
+                u.getIdEstudiante(), u.getNombre(),
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear(), u.getPaso()}));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -54,6 +67,12 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
         jLabelBuscar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        jTextFieldID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldIDKeyPressed(evt);
+            }
+        });
 
         jLabelTitulo.setText("Registro de Todos los Estudiantes");
 
@@ -132,19 +151,14 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMouseClicked
-        try {
-            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            String idEstudiante = jTextFieldID.getText();
-            model.setRowCount(0);
-            estudiantesInterface.listarId(idEstudiante).forEach((u) -> model.addRow(new Object[]{
-                u.getIdEstudiante(), u.getNombre(),
-                u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(),u.getYear(), u.getPaso()}) );
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        buscarEstudiantesNombre();
     }//GEN-LAST:event_jLabelBuscarMouseClicked
+
+    private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            buscarEstudiantesNombre();
+        }
+    }//GEN-LAST:event_jTextFieldIDKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
