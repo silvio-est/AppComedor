@@ -2,17 +2,17 @@ package com.unah.appcomedor.DAO;
 
 import com.unah.appcomedor.basedatos.ConexionBD;
 import com.unah.appcomedor.interfaces.EstudiantesInterface;
-import com.unah.appcomedor.models.Estudiante;
+import com.unah.appcomedor.models.Estudiantes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
+public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
 
     @Override
-    public List<Estudiante> listarAll() throws Exception {
-        List<Estudiante> listaEstudiantes = null;
+    public List<Estudiantes> listarAll() throws Exception {
+        List<Estudiantes> listaEstudiantes = null;
         try {
             this.Conectar();
             PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM estudiantes");
@@ -20,7 +20,7 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Estudiante estudiante = new Estudiante();
+                Estudiantes estudiante = new Estudiantes();
                 estudiante.setIdEstudiante(rs.getInt("id_estudiante"));
                 estudiante.setNombre(rs.getString("Nombre"));
                 estudiante.setPrimerApellido(rs.getString("Primer Apellido"));
@@ -44,8 +44,8 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
     }
 
     @Override
-    public List<Estudiante> buscarNombre(String nombre) throws Exception {
-        List<Estudiante> listaBuscar = null;
+    public List<Estudiantes> buscarNombre(String nombre) throws Exception {
+        List<Estudiantes> listaBuscar = null;
 
         try {
             this.Conectar();
@@ -54,7 +54,7 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Estudiante estudiante = new Estudiante();
+                Estudiantes estudiante = new Estudiantes();
                 estudiante.setIdEstudiante(rs.getInt("id_estudiante"));
                 estudiante.setNombre(rs.getString("Nombre"));
                 estudiante.setPrimerApellido(rs.getString("Primer Apellido"));
@@ -128,8 +128,8 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
     }
 
     @Override
-    public List<Estudiante> agregarEstudiantesPasaron() throws Exception {
-        List<Estudiante> listaEstudiantesPasaron = null;
+    public List<Estudiantes> agregarEstudiantesPasaron() throws Exception {
+        List<Estudiantes> listaEstudiantesPasaron = null;
         try {
             this.Conectar();
             PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM estudiantes WHERE Paso = ?");
@@ -138,7 +138,7 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Estudiante estudiante = new Estudiante();
+                Estudiantes estudiante = new Estudiantes();
                 estudiante.setNombre(rs.getString("Nombre"));
                 estudiante.setPrimerApellido(rs.getString("Primer Apellido"));
                 estudiante.setSegundoApellido(rs.getString("Segundo Apellido"));

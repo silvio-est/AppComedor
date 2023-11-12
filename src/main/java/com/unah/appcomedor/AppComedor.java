@@ -1,7 +1,7 @@
 package com.unah.appcomedor;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import com.unah.appcomedor.views.Estudiantes;
+import com.unah.appcomedor.views.Estudiante;
 import com.unah.appcomedor.views.Inicio;
 import com.unah.appcomedor.views.RegistroEstudiantes;
 import com.unah.appcomedor.views.RegistroTrabajadores;
@@ -293,7 +293,7 @@ public class AppComedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        showJPanel(new Estudiantes());
+        showJPanel(new Estudiante());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

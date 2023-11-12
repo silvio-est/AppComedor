@@ -1,35 +1,32 @@
-
 package com.unah.appcomedor.models;
 
+public class Trabajadores {
 
-public class Estudiante {
-    private int idEstudiante;
+    private int idTrabajador;
     private String nombre;
     private String primerApellido;
     private String segundoApellido;
-    private String carrera;
-    private int year;
+    private String trabajo;
     private Boolean paso;
 
-    public Estudiante() {
+    public Trabajadores() {
     }
 
-    public Estudiante(int idEstudiante, String nombre, String primerApellido, String segundoApellido, String carrera, int year, Boolean paso) {
-        this.idEstudiante = idEstudiante;
+    public Trabajadores(int idTrabajador, String nombre, String primerApellido, String segundoApellido, String trabajo, Boolean paso) {
+        this.idTrabajador = idTrabajador;
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
-        this.carrera = carrera;
-        this.year = year;
+        this.trabajo = trabajo;
         this.paso = paso;
     }
 
-    public int getIdEstudiante() {
-        return idEstudiante;
+    public int getIdTrabajador() {
+        return idTrabajador;
     }
 
-    public void setIdEstudiante(int idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public void setIdTrabajador(int idTrabajador) {
+        this.idTrabajador = idTrabajador;
     }
 
     public String getNombre() {
@@ -56,20 +53,12 @@ public class Estudiante {
         this.segundoApellido = segundoApellido;
     }
 
-    public String getCarrera() {
-        return carrera;
+    public String getTrabajo() {
+        return trabajo;
     }
 
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+    public void setTrabajo(String trabajo) {
+        this.trabajo = trabajo;
     }
 
     public Boolean getPaso() {
@@ -79,11 +68,7 @@ public class Estudiante {
     public void setPaso(Boolean paso) {
         this.paso = paso;
     }
+    
+    
 
-    
-    
-    
-    
-    
-    
 }

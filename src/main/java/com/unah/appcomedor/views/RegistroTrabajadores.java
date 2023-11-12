@@ -1,28 +1,59 @@
 package com.unah.appcomedor.views;
 
+import com.unah.appcomedor.DAO.TrabajadoresDAO;
+import com.unah.appcomedor.interfaces.TrabajadoresInterface;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.table.DefaultTableModel;
 
 public class RegistroTrabajadores extends javax.swing.JPanel {
-
 
     public RegistroTrabajadores() {
         initComponents();
         initStyle();
+        loadTrabajadores();
     }
-    
-    private void initStyle(){
+
+    private void initStyle() {
         initJLabe();
-        
+
     }
-    
-    private void initJLabe(){
+
+    private void initJLabe() {
         jLabelTitulo.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelTitulo.setForeground(Color.black);
-        
+
         jLabelID.putClientProperty("FlatLaf.style", "font: $h4.font");
         jLabelID.setForeground(Color.black);
-    }    
+    }
 
+    private void loadTrabajadores() {
+        try {
+            TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            trabajadoresInterface.listarAll().forEach((u) -> model.addRow(new Object[]{
+                u.getIdTrabajador(), u.getNombre(),
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo(), u.getPaso()}));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void buscarTrabajadorNombre() {
+        try {
+            TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            String nombreBuscar = jTextFieldID.getText();
+            model.setRowCount(0);
+            trabajadoresInterface.buscarNombre(nombreBuscar).forEach((u) -> model.addRow(new Object[]{
+                u.getIdTrabajador(), u.getNombre(),
+                u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo(), u.getPaso()}));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,6 +66,12 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jTextFieldID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldIDKeyPressed(evt);
+            }
+        });
+
         jLabelTitulo.setText("Registro de Todos los Estudiantes");
 
         jLabelID.setText("ID del Trabajador a Buscar");
@@ -43,24 +80,33 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
         jLabelBuscar.setText("Buscar");
         jLabelBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabelBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBuscarMouseClicked(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Primer Apellido", "Segundo Apellido", "ID", "Entro"
+                "ID", "Nombre", "Primer Apellido", "Segundo Apellido", "Trabajo", "Entro"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -101,6 +147,16 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            buscarTrabajadorNombre();
+        }
+    }//GEN-LAST:event_jTextFieldIDKeyPressed
+
+    private void jLabelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMouseClicked
+        buscarTrabajadorNombre();
+    }//GEN-LAST:event_jLabelBuscarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

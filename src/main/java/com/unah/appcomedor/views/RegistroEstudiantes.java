@@ -1,6 +1,6 @@
 package com.unah.appcomedor.views;
 
-import com.unah.appcomedor.DAO.EstudianteDAO;
+import com.unah.appcomedor.DAO.EstudiantesDAO;
 import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -31,7 +31,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
 
     private void loadEstudiantes() {
         try {
-            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             estudiantesInterface.listarAll().forEach((u) -> model.addRow(new Object[]{
                 u.getIdEstudiante(), u.getNombre(),
@@ -44,11 +44,11 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
 
     private void buscarEstudiantesNombre() {
         try {
-            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            String idEstudiante = jTextFieldID.getText();
+            String nombreBuscar = jTextFieldID.getText();
             model.setRowCount(0);
-            estudiantesInterface.buscarNombre(idEstudiante).forEach((u) -> model.addRow(new Object[]{
+            estudiantesInterface.buscarNombre(nombreBuscar).forEach((u) -> model.addRow(new Object[]{
                 u.getIdEstudiante(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear(), u.getPaso()}));
 

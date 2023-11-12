@@ -1,15 +1,15 @@
 package com.unah.appcomedor.views;
 
-import com.unah.appcomedor.DAO.EstudianteDAO;
+import com.unah.appcomedor.DAO.EstudiantesDAO;
 import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Estudiantes extends javax.swing.JPanel {
+public class Estudiante extends javax.swing.JPanel {
     
-    public Estudiantes() {
+    public Estudiante() {
         initComponents();
         initStyle();
         loadEstudiantes();
@@ -31,7 +31,7 @@ public class Estudiantes extends javax.swing.JPanel {
     
     private void loadEstudiantes() {
         try {
-            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             
@@ -163,7 +163,7 @@ public class Estudiantes extends javax.swing.JPanel {
     private void jLabelAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAceptarMouseClicked
         int idEstudiante = Integer.parseInt(jTextFieldID.getText());
         
-        EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+        EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
         try {
             Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
             
@@ -197,7 +197,7 @@ public class Estudiantes extends javax.swing.JPanel {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int idEstudiante = Integer.parseInt(jTextFieldID.getText());
             
-            EstudiantesInterface estudiantesInterface = new EstudianteDAO();
+            EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             try {
                 Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
                 
