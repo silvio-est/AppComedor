@@ -1,3 +1,4 @@
+com\unah\appcomedor\views\Trabajador$4.class
 com\unah\appcomedor\views\Estudiante$1.class
 com\unah\appcomedor\views\RegistroEstudiantes$2.class
 com\unah\appcomedor\views\Estudiante.class
@@ -6,6 +7,7 @@ com\unah\appcomedor\AppComedor.class
 com\unah\appcomedor\basedatos\ConexionBD.class
 com\unah\appcomedor\AppComedor$1.class
 com\unah\appcomedor\views\Estudiante$3.class
+com\unah\appcomedor\views\Trabajador$2.class
 com\unah\appcomedor\views\Trabajador.class
 com\unah\appcomedor\views\Trabajador$1.class
 com\unah\appcomedor\DAO\EstudiantesDAO.class
@@ -18,6 +20,7 @@ com\unah\appcomedor\views\RegistroEstudiantes.class
 com\unah\appcomedor\AppComedor$7.class
 com\unah\appcomedor\DAO\TrabajadoresDAO.class
 com\unah\appcomedor\views\RegistroEstudiantes$1.class
+com\unah\appcomedor\views\Trabajador$3.class
 com\unah\appcomedor\AppComedor$2.class
 com\unah\appcomedor\interfaces\EstudiantesInterface.class
 com\unah\appcomedor\views\Estudiante$2.class

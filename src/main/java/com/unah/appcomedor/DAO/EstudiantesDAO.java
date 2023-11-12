@@ -115,7 +115,6 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
             PreparedStatement st = this.conexion.prepareStatement("UPDATE estudiantes SET Paso = 1 WHERE id_estudiante = ?");
             st.setInt(1, idEstudiante);
             int executeUpdate = st.executeUpdate();
-            System.out.println(executeUpdate);
 
             st.close();
 
@@ -128,7 +127,7 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
     }
 
     @Override
-    public List<Estudiantes> agregarEstudiantesPasaron() throws Exception {
+    public List<Estudiantes> agregarTrabajadoresPasaron() throws Exception {
         List<Estudiantes> listaEstudiantesPasaron = null;
         try {
             this.Conectar();

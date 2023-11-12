@@ -35,7 +35,7 @@ public class Estudiante extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             
-            estudiantesInterface.agregarEstudiantesPasaron().forEach((u) -> model.addRow(new Object[]{u.getNombre(),
+            estudiantesInterface.agregarTrabajadoresPasaron().forEach((u) -> model.addRow(new Object[]{u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear()}));
             
         } catch (Exception e) {
