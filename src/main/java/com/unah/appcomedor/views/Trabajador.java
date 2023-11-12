@@ -18,6 +18,8 @@ public class Trabajador extends javax.swing.JPanel {
     }
     private void initStyle() {
         initJLabe();
+        jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el ID del trabajador a verificar");
+
     }
     
     private void initJLabe(){

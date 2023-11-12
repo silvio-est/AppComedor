@@ -76,7 +76,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
 
         jLabelTitulo.setText("Registro de Todos los Estudiantes");
 
-        jLabelID.setText("ID del Estudiante a Buscar");
+        jLabelID.setText("Nombre del Estudiante a Buscar");
 
         jLabelBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
         jLabelBuscar.setText("Buscar");

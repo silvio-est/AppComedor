@@ -70,7 +70,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID del Estudiante a Buscar"/>
+        <Property name="text" type="java.lang.String" value="Nombre del Estudiante a Buscar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBuscar">

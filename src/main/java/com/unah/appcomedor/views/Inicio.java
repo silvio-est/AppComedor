@@ -82,7 +82,7 @@ public class Inicio extends javax.swing.JPanel {
         jLabelTexto2.setText("-Registro de Trabajadores");
         Background.add(jLabelTexto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, -1, -1));
 
-        jLabelTexto3.setText("-Gestion de Usuarios");
+        jLabelTexto3.setText("-Gestion de Estudiantes");
         Background.add(jLabelTexto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, -1));
 
         jLabelTexto4.setText("-Gestion de Trabajadores");
