@@ -111,4 +111,23 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
         return pasoComedor;
     }
 
+    @Override
+    public void cambiarPasoComedor(int idEstudiante) throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("UPDATE estudiantes SET Paso = 1 WHERE id_estudiante = ?");
+            st.setInt(1, idEstudiante);
+            int executeUpdate = st.executeUpdate();
+            System.out.println(executeUpdate);
+            
+            st.close();
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        
+    }
+
 }

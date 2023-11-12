@@ -159,14 +159,19 @@ public class Estudiantes extends javax.swing.JPanel {
         try {
             Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
 
-            if (pasoComedor == 1) {
-                JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
-
-            } else if (pasoComedor == 0) {
-                JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " puede pasar al comedor.");
-
-            } else if (pasoComedor == -1) {
-                JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " no existe en la base de datos.");
+            switch (pasoComedor) {
+                case 1:
+                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
+                    break;
+                case 0:
+                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " puede pasar al comedor.");
+                    jTextFieldID.setText("");
+                    break;
+                case -1:
+                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " no existe en la base de datos.");
+                    break;
+                default:
+                    break;
             }
 
         } catch (Exception ex) {
@@ -186,14 +191,20 @@ public class Estudiantes extends javax.swing.JPanel {
             try {
                 Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
 
-                if (pasoComedor == 1) {
-                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
-
-                } else if (pasoComedor == 0) {
-                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " puede pasar al comedor.");
-
-                } else if (pasoComedor == -1) {
-                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " no existe en la base de datos.");
+                switch (pasoComedor) {
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " puede pasar al comedor.");
+                        jTextFieldID.setText("");
+                        estudiantesInterface.cambiarPasoComedor(idEstudiante);
+                        break;
+                    case -1:
+                        JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " no existe en la base de datos.");
+                        break;
+                    default:
+                        break;
                 }
 
             } catch (Exception ex) {
