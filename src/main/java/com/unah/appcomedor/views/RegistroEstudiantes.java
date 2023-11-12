@@ -16,7 +16,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
 
     private void initStyle() {
         initJLabe();
-        jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el ID del estudiante a buscar");
+        jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el Nombre del estudiante a buscar");
 
     }
 
@@ -48,7 +48,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             String idEstudiante = jTextFieldID.getText();
             model.setRowCount(0);
-            estudiantesInterface.listarNombre(idEstudiante).forEach((u) -> model.addRow(new Object[]{
+            estudiantesInterface.buscarNombre(idEstudiante).forEach((u) -> model.addRow(new Object[]{
                 u.getIdEstudiante(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear(), u.getPaso()}));
 

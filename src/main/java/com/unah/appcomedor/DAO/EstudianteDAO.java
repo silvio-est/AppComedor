@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
 
     @Override
@@ -45,7 +44,7 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
     }
 
     @Override
-    public List<Estudiante> listarNombre(String nombre) throws Exception {
+    public List<Estudiante> buscarNombre(String nombre) throws Exception {
         List<Estudiante> listaBuscar = null;
 
         try {
@@ -90,13 +89,11 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
             if (rs.next()) {
                 if (rs.getBoolean("Paso")) {
                     pasoComedor = 1;
-                }
-                else if (rs.getBoolean("Paso") == false) {
+                } else if (rs.getBoolean("Paso") == false) {
                     pasoComedor = 0;
-                    
+
                 }
-            }
-            else{
+            } else {
                 pasoComedor = -1;
             }
 
@@ -119,7 +116,7 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
             st.setInt(1, idEstudiante);
             int executeUpdate = st.executeUpdate();
             System.out.println(executeUpdate);
-            
+
             st.close();
 
         } catch (Exception e) {
@@ -127,7 +124,39 @@ public class EstudianteDAO extends ConexionBD implements EstudiantesInterface {
         } finally {
             this.Cerrar();
         }
-        
+
+    }
+
+    @Override
+    public List<Estudiante> agregarEstudiantesPasaron() throws Exception {
+        List<Estudiante> listaEstudiantesPasaron = null;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM estudiantes WHERE Paso = ?");
+            st.setBoolean(1, true);
+            listaEstudiantesPasaron = new ArrayList();
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                Estudiante estudiante = new Estudiante();
+                estudiante.setNombre(rs.getString("Nombre"));
+                estudiante.setPrimerApellido(rs.getString("Primer Apellido"));
+                estudiante.setSegundoApellido(rs.getString("Segundo Apellido"));
+                estudiante.setCarrera(rs.getString("Carrera"));
+                estudiante.setYear(rs.getInt("Año"));
+
+                listaEstudiantesPasaron.add(estudiante);
+            }
+
+            rs.close();
+            st.close();
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return listaEstudiantesPasaron;
     }
 
 }
