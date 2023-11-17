@@ -2,7 +2,7 @@ package com.unah.appcomedor.DAO;
 
 import com.unah.appcomedor.basedatos.ConexionBD;
 import com.unah.appcomedor.interfaces.TrabajadoresInterface;
-import com.unah.appcomedor.models.Trabajadores;
+import com.unah.appcomedor.entity.Trabajadores;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface
 
     @Override
     public List<Trabajadores> agregarTrabajadoresPasaron() throws Exception {
-           List<Trabajadores> listaTrabajadoresesPasaron = null;
+        List<Trabajadores> listaTrabajadoresesPasaron = null;
         try {
             this.Conectar();
             PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM trabajadores WHERE Paso = ?");
@@ -152,5 +152,22 @@ public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface
             this.Cerrar();
         }
         return listaTrabajadoresesPasaron;
+    }
+
+    @Override
+    public void cambiarPasoComedorAll() throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("UPDATE trabajadores SET Paso = 0");
+            int executeUpdate = st.executeUpdate();
+
+            st.close();
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
     }
 }

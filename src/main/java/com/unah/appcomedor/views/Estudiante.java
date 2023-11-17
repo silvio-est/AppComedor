@@ -6,43 +6,44 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import validar.Validar;
 
 public class Estudiante extends javax.swing.JPanel {
-    
+
     public Estudiante() {
         initComponents();
         initStyle();
         loadEstudiantes();
     }
-    
+
     private void initStyle() {
         styleJLabe();
         jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el ID del estudiante a verificar");
 
     }
-    
+
     private void styleJLabe() {
         jLabelTitulo.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelTitulo.setForeground(Color.black);
-        
+
         jLabelID.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelID.setForeground(Color.black);
     }
-    
+
     private void loadEstudiantes() {
         try {
             EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            
+
             estudiantesInterface.agregarTrabajadoresPasaron().forEach((u) -> model.addRow(new Object[]{u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear()}));
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -161,46 +162,12 @@ public class Estudiante extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAceptarMouseClicked
-        int idEstudiante = Integer.parseInt(jTextFieldID.getText());
-        
-        EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
-        try {
-            Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
-            
-            switch (pasoComedor) {
-                case 1:
-                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
-                    break;
-                case 0:
-                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " puede pasar al comedor.");
-                    jTextFieldID.setText("");
-                    estudiantesInterface.cambiarPasoComedor(idEstudiante);
-                    loadEstudiantes();
-                    break;
-                case -1:
-                    JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " no existe en la base de datos.");
-                    break;
-                default:
-                    break;
-            }
-            
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-    }//GEN-LAST:event_jLabelAceptarMouseClicked
-
-    private void jLabelCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMouseClicked
-        jTextFieldID.setText("");
-    }//GEN-LAST:event_jLabelCancelarMouseClicked
-
-    private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (Validar.esIdValido(jTextFieldID) == true) {
             int idEstudiante = Integer.parseInt(jTextFieldID.getText());
-            
             EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             try {
                 Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
-                
+
                 switch (pasoComedor) {
                     case 1:
                         JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
@@ -217,10 +184,46 @@ public class Estudiante extends javax.swing.JPanel {
                     default:
                         break;
                 }
-                
+
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+        }
+    }//GEN-LAST:event_jLabelAceptarMouseClicked
+
+    private void jLabelCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMouseClicked
+        jTextFieldID.setText("");
+    }//GEN-LAST:event_jLabelCancelarMouseClicked
+
+    private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Validar.esIdValido(jTextFieldID) == true) {
+            int idEstudiante = Integer.parseInt(jTextFieldID.getText());
+            EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
+            try {
+                Integer pasoComedor = estudiantesInterface.pasoComedor(idEstudiante);
+
+                switch (pasoComedor) {
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " ya paso al comedor.");
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " puede pasar al comedor.");
+                        jTextFieldID.setText("");
+                        estudiantesInterface.cambiarPasoComedor(idEstudiante);
+                        loadEstudiantes();
+                        break;
+                    case -1:
+                        JOptionPane.showMessageDialog(null, "El estudiante con ID " + idEstudiante + " no existe en la base de datos.");
+                        break;
+                    default:
+                        break;
+                }
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
         }
     }//GEN-LAST:event_jTextFieldIDKeyPressed
 

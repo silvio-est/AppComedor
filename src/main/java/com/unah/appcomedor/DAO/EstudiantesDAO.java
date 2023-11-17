@@ -2,7 +2,7 @@ package com.unah.appcomedor.DAO;
 
 import com.unah.appcomedor.basedatos.ConexionBD;
 import com.unah.appcomedor.interfaces.EstudiantesInterface;
-import com.unah.appcomedor.models.Estudiantes;
+import com.unah.appcomedor.entity.Estudiantes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -158,4 +158,21 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
         return listaEstudiantesPasaron;
     }
 
+    @Override
+    public void cambiarPasoComedorAll() throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("UPDATE estudiantes SET Paso = 0");
+            int executeUpdate = st.executeUpdate();
+
+            st.close();
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
+    }
 }
+

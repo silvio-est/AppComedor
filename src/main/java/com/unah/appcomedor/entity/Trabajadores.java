@@ -1,4 +1,4 @@
-package com.unah.appcomedor.models;
+package com.unah.appcomedor.entity;
 
 public class Trabajadores {
 

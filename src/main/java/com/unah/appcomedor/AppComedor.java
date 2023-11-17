@@ -1,6 +1,10 @@
 package com.unah.appcomedor;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.unah.appcomedor.DAO.EstudiantesDAO;
+import com.unah.appcomedor.DAO.TrabajadoresDAO;
+import com.unah.appcomedor.interfaces.EstudiantesInterface;
+import com.unah.appcomedor.interfaces.TrabajadoresInterface;
 import com.unah.appcomedor.views.Estudiante;
 import com.unah.appcomedor.views.Inicio;
 import com.unah.appcomedor.views.RegistroEstudiantes;
@@ -11,6 +15,7 @@ import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -69,22 +74,19 @@ public class AppComedor extends javax.swing.JFrame {
         Locale fecha = new Locale("es", "CU");
         jLabelFecha.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es' EEEE dd 'de' MMMM 'de' yyyy", fecha)));
     }
-    
-    private void showJPanel(JPanel panel){
+
+    private void showJPanel(JPanel panel) {
         panel.setSize(750, 430);
         panel.setLocation(0, 0);
-        
+
         contenido.removeAll();
         contenido.add(panel, BorderLayout.CENTER);
         contenido.revalidate();
         contenido.repaint();
-        
+
     }
-    
- 
 
-
-@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -105,9 +107,14 @@ public class AppComedor extends javax.swing.JFrame {
         contenido = new javax.swing.JPanel();
         jLabelMensaje = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Comedor");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         background.setBackground(new java.awt.Color(255, 255, 255));
@@ -301,7 +308,7 @@ public class AppComedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      showJPanel(new RegistroEstudiantes());
+        showJPanel(new RegistroEstudiantes());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -309,8 +316,31 @@ public class AppComedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    
+
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Está seguro de cerrar la aplicación?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+        EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
+        TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            setVisible(false);
+
+            try {
+                estudiantesInterface.cambiarPasoComedorAll();
+                trabajadoresInterface.cambiarPasoComedorAll();
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+            } finally {
+                System.exit(0);
+            }
+
+            System.exit(0);
+        }
+
+    }//GEN-LAST:event_formWindowClosing
 
     public static void main(String args[]) {
         FlatMaterialLighterIJTheme.setup();
