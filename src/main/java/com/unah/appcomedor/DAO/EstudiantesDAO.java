@@ -5,8 +5,11 @@ import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import com.unah.appcomedor.entity.Estudiantes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
 
@@ -21,7 +24,7 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
 
             while (rs.next()) {
                 Estudiantes estudiante = new Estudiantes();
-                estudiante.setIdEstudiante(rs.getInt("id_estudiante"));
+                estudiante.setId(rs.getInt("id_estudiante"));
                 estudiante.setNombre(rs.getString("Nombre"));
                 estudiante.setPrimerApellido(rs.getString("Primer Apellido"));
                 estudiante.setSegundoApellido(rs.getString("Segundo Apellido"));
@@ -55,7 +58,7 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
 
             while (rs.next()) {
                 Estudiantes estudiante = new Estudiantes();
-                estudiante.setIdEstudiante(rs.getInt("id_estudiante"));
+                estudiante.setId(rs.getInt("id_estudiante"));
                 estudiante.setNombre(rs.getString("Nombre"));
                 estudiante.setPrimerApellido(rs.getString("Primer Apellido"));
                 estudiante.setSegundoApellido(rs.getString("Segundo Apellido"));
@@ -174,5 +177,38 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
         }
 
     }
-}
 
+    @Override
+    public int[] resumenComedor(){
+        int[] resumen = new int[2];
+
+        try {
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT COUNT(*) AS total FROM estudiantes");
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                resumen[0] = rs.getInt("total");
+            }
+
+            st = this.conexion.prepareStatement("SELECT COUNT(*) AS totalPasaron FROM estudiantes WHERE Paso = 1");
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                resumen[1] = rs.getInt("totalPasaron");
+            }
+
+            rs.close();
+            st.close();
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                this.Cerrar();
+            } catch (SQLException ex) {
+                Logger.getLogger(EstudiantesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return resumen;
+    }
+}

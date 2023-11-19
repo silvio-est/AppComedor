@@ -50,9 +50,6 @@ public class AppComedor extends javax.swing.JFrame {
         jButton5.putClientProperty("FlatLaf.style", "font: $h3.font");
         jButton5.setForeground(Color.white);
 
-        jButton6.putClientProperty("FlatLaf.style", "font: $h3.font");
-        jButton6.setForeground(Color.white);
-
     }
 
     private void initJLabel() {
@@ -99,7 +96,6 @@ public class AppComedor extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanelHeader = new javax.swing.JPanel();
         jLabelNavText = new javax.swing.JLabel();
@@ -201,20 +197,6 @@ public class AppComedor extends javax.swing.JFrame {
             }
         });
         jPanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 240, 80));
-
-        jButton6.setBackground(new java.awt.Color(102, 102, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administracion.png"))); // NOI18N
-        jButton6.setText("Administracion");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 240, 80));
         jPanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 30, 40));
 
         jPanelHeader.setBackground(new java.awt.Color(25, 118, 210));
@@ -315,10 +297,6 @@ public class AppComedor extends javax.swing.JFrame {
         showJPanel(new RegistroTrabajadores());
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         int opcion = JOptionPane.showConfirmDialog(this, "¿Está seguro de cerrar la aplicación?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
         EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
@@ -361,7 +339,6 @@ public class AppComedor extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAppName;
     private javax.swing.JLabel jLabelFecha;

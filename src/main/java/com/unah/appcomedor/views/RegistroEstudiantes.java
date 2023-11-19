@@ -4,6 +4,8 @@ import com.unah.appcomedor.DAO.EstudiantesDAO;
 import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroEstudiantes extends javax.swing.JPanel {
@@ -17,7 +19,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
     private void initStyle() {
         initJLabe();
         jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el Nombre del estudiante a buscar");
-
+        jLabelResumen.setText(mostrarResumen());
     }
 
     private void initJLabe() {
@@ -34,12 +36,20 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
             EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             estudiantesInterface.listarAll().forEach((u) -> model.addRow(new Object[]{
-                u.getIdEstudiante(), u.getNombre(),
+                u.getId(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear(), u.getPaso()}));
 
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    private String mostrarResumen() {
+        EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
+
+        int[] resumen = estudiantesInterface.resumenComedor();
+
+        return "La cantidad total de estudiantes que han pasado al comedor es de " + resumen[1] + " , para un total de " + resumen[0] + " estudiantes.";
     }
 
     private void buscarEstudiantesNombre() {
@@ -49,7 +59,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
             String nombreBuscar = jTextFieldID.getText();
             model.setRowCount(0);
             estudiantesInterface.buscarNombre(nombreBuscar).forEach((u) -> model.addRow(new Object[]{
-                u.getIdEstudiante(), u.getNombre(),
+                u.getId(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getCarrera(), u.getYear(), u.getPaso()}));
 
         } catch (Exception e) {
@@ -67,6 +77,7 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
         jLabelBuscar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabelResumen = new javax.swing.JLabel();
 
         jTextFieldID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -126,13 +137,16 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelID)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))
+                        .addComponent(jLabelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelID)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabelResumen)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,26 +158,29 @@ public class RegistroEstudiantes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            buscarEstudiantesNombre();
+        }
+    }//GEN-LAST:event_jTextFieldIDKeyPressed
 
     private void jLabelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBuscarMouseClicked
         buscarEstudiantesNombre();
     }//GEN-LAST:event_jLabelBuscarMouseClicked
 
-    private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            buscarEstudiantesNombre();
-        }
-    }//GEN-LAST:event_jTextFieldIDKeyPressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelBuscar;
     private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelResumen;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

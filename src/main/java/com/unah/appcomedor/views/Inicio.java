@@ -59,6 +59,7 @@ public class Inicio extends javax.swing.JPanel {
         jLabelTexto5 = new javax.swing.JLabel();
         jLabelDesarroladores = new javax.swing.JLabel();
         jLabelLogoUnah = new javax.swing.JLabel();
+        jLabelLogoUnah1 = new javax.swing.JLabel();
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
         Background.setPreferredSize(new java.awt.Dimension(780, 450));
@@ -94,8 +95,11 @@ public class Inicio extends javax.swing.JPanel {
         jLabelDesarroladores.setText("Desarrollado por un equipo de ING de Primer Año de INF");
         Background.add(jLabelDesarroladores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, -1, -1));
 
-        jLabelLogoUnah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoUNAH.png"))); // NOI18N
-        Background.add(jLabelLogoUnah, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, 50, 60));
+        jLabelLogoUnah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoCT.jpg"))); // NOI18N
+        Background.add(jLabelLogoUnah, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 70, 70));
+
+        jLabelLogoUnah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoUNAH.png"))); // NOI18N
+        Background.add(jLabelLogoUnah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, 50, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,6 +124,7 @@ public class Inicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelCabeza2;
     private javax.swing.JLabel jLabelDesarroladores;
     private javax.swing.JLabel jLabelLogoUnah;
+    private javax.swing.JLabel jLabelLogoUnah1;
     private javax.swing.JLabel jLabelTexto;
     private javax.swing.JLabel jLabelTexto1;
     private javax.swing.JLabel jLabelTexto2;

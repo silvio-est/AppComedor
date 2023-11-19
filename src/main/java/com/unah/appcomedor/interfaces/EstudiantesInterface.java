@@ -11,5 +11,6 @@ public interface EstudiantesInterface {
     public List<Estudiantes> agregarTrabajadoresPasaron() throws Exception;
     public List<Estudiantes> listarAll() throws Exception;
     public List<Estudiantes> buscarNombre(String nombre) throws Exception;
+    public int[] resumenComedor();
     
 }

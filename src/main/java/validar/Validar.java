@@ -19,7 +19,7 @@ public class Validar {
             return true;
 
         } else {
-            JOptionPane.showMessageDialog(null, "Deb de introducir un ID valido", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe de introducir un ID valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }

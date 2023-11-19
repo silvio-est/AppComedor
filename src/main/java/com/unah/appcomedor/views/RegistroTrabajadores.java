@@ -1,6 +1,8 @@
 package com.unah.appcomedor.views;
 
+import com.unah.appcomedor.DAO.EstudiantesDAO;
 import com.unah.appcomedor.DAO.TrabajadoresDAO;
+import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import com.unah.appcomedor.interfaces.TrabajadoresInterface;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -17,8 +19,7 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
     private void initStyle() {
         initJLabe();
         jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el Nombre del trabajador a buscar");
-
-
+        jLabelResumen.setText(mostrarResumen());
     }
 
     private void initJLabe() {
@@ -34,12 +35,20 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
             TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             trabajadoresInterface.listarAll().forEach((u) -> model.addRow(new Object[]{
-                u.getIdTrabajador(), u.getNombre(),
+                u.getId(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo(), u.getPaso()}));
 
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    private String mostrarResumen() {
+        TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
+
+        int[] resumen = trabajadoresInterface.resumenComedor();
+
+        return "La cantidad total de trabajadores que han pasado al comedor es de " + resumen[1] + " , para un total de " + resumen[0] + " trabajadores.";
     }
 
     private void buscarTrabajadorNombre() {
@@ -49,7 +58,7 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
             String nombreBuscar = jTextFieldID.getText();
             model.setRowCount(0);
             trabajadoresInterface.buscarNombre(nombreBuscar).forEach((u) -> model.addRow(new Object[]{
-                u.getIdTrabajador(), u.getNombre(),
+                u.getId(), u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo(), u.getPaso()}));
 
         } catch (Exception e) {
@@ -67,6 +76,7 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
         jLabelBuscar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabelResumen = new javax.swing.JLabel();
 
         jTextFieldID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -113,6 +123,8 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabelResumen.setText("Han pasado al comedor 25 estudiantes de un total de 50");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,12 +138,14 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelID)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))
+                        .addComponent(jLabelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelID)
+                            .addComponent(jLabelResumen))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,8 +159,10 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelResumen, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,6 +180,7 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelBuscar;
     private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelResumen;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -1,4 +1,3 @@
-
 package com.unah.appcomedor.views;
 
 import com.unah.appcomedor.DAO.TrabajadoresDAO;
@@ -7,38 +6,39 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import validar.Validar;
 
 public class Trabajador extends javax.swing.JPanel {
-
 
     public Trabajador() {
         initComponents();
         initStyle();
         loadTrabajadores();
     }
+
     private void initStyle() {
         initJLabe();
         jTextFieldID.putClientProperty("JTextField.placeholderText", "Ingrese el ID del trabajador a verificar");
 
     }
-    
-    private void initJLabe(){
+
+    private void initJLabe() {
         jLabelTitulo.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelTitulo.setForeground(Color.black);
-        
+
         jLabelID.putClientProperty("FlatLaf.style", "font: $h2.font");
         jLabelID.setForeground(Color.black);
     }
-    
-        private void loadTrabajadores() {
+
+    private void loadTrabajadores() {
         try {
             TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            
+
             trabajadoresInterface.agregarTrabajadoresPasaron().forEach((u) -> model.addRow(new Object[]{u.getNombre(),
                 u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo()}));
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -165,32 +165,36 @@ public class Trabajador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAceptarMouseClicked
-        int idTrabajador = Integer.parseInt(jTextFieldID.getText());
-        
-        TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
-        try {
-            Integer pasoComedor = trabajadoresInterface.pasoComedor(idTrabajador);
-            
-            switch (pasoComedor) {
-                case 1:
-                    JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " ya paso al comedor.");
-                    break;
-                case 0:
-                    JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " puede pasar al comedor.");
-                    jTextFieldID.setText("");
-                    trabajadoresInterface.cambiarPasoComedor(idTrabajador);
-                    loadTrabajadores();
-                    break;
-                case -1:
-                    JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " no existe en la base de datos.");
-                    break;
-                default:
-                    break;
+        if (Validar.esIdValido(jTextFieldID) == true) {
+            int idTrabajador = Integer.parseInt(jTextFieldID.getText());
+            TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
+
+            try {
+                Integer pasoComedor = trabajadoresInterface.pasoComedor(idTrabajador);
+
+                switch (pasoComedor) {
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " ya paso al comedor.");
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " puede pasar al comedor.");
+                        jTextFieldID.setText("");
+                        trabajadoresInterface.cambiarPasoComedor(idTrabajador);
+                        loadTrabajadores();
+                        break;
+                    case -1:
+                        JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " no existe en la base de datos.");
+                        break;
+                    default:
+                        break;
+                }
+
+            } catch (Exception ex) {
+                System.out.println(ex);
             }
-            
-        } catch (Exception ex) {
-            System.out.println(ex);
         }
+
+
     }//GEN-LAST:event_jLabelAceptarMouseClicked
 
     private void jLabelCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelarMouseClicked
@@ -198,33 +202,36 @@ public class Trabajador extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelCancelarMouseClicked
 
     private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-                    int idTrabajador = Integer.parseInt(jTextFieldID.getText());
-        
-        TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
-        try {
-            Integer pasoComedor = trabajadoresInterface.pasoComedor(idTrabajador);
-            
-            switch (pasoComedor) {
-                case 1:
-                    JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " ya paso al comedor.");
-                    break;
-                case 0:
-                    JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " puede pasar al comedor.");
-                    jTextFieldID.setText("");
-                    trabajadoresInterface.cambiarPasoComedor(idTrabajador);
-                    loadTrabajadores();
-                    break;
-                case -1:
-                    JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " no existe en la base de datos.");
-                    break;
-                default:
-                    break;
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Validar.esIdValido(jTextFieldID) == true) {
+
+                int idTrabajador = Integer.parseInt(jTextFieldID.getText());
+                TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
+
+                try {
+                    Integer pasoComedor = trabajadoresInterface.pasoComedor(idTrabajador);
+
+                    switch (pasoComedor) {
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " ya paso al comedor.");
+                            break;
+                        case 0:
+                            JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " puede pasar al comedor.");
+                            jTextFieldID.setText("");
+                            trabajadoresInterface.cambiarPasoComedor(idTrabajador);
+                            loadTrabajadores();
+                            break;
+                        case -1:
+                            JOptionPane.showMessageDialog(null, "El trabajador con ID " + idTrabajador + " no existe en la base de datos.");
+                            break;
+                        default:
+                            break;
+                    }
+
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
             }
-            
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
         }
     }//GEN-LAST:event_jTextFieldIDKeyPressed
 
