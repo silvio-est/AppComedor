@@ -57,6 +57,10 @@ public class Estudiante extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        Background.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabelTitulo.setText("Verificar si el estudiante puede pasar al comedor");
 
         jLabelID.setText("ID del Estudiante");
@@ -162,7 +166,7 @@ public class Estudiante extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAceptarMouseClicked
-        if (Validar.esIdValido(jTextFieldID) == true) {
+        if (Validar.esValidoID(jTextFieldID) == true) {
             int idEstudiante = Integer.parseInt(jTextFieldID.getText());
             EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             try {
@@ -197,7 +201,7 @@ public class Estudiante extends javax.swing.JPanel {
 
     private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (Validar.esIdValido(jTextFieldID) == true) {
+            if (Validar.esValidoID(jTextFieldID) == true) {
             int idEstudiante = Integer.parseInt(jTextFieldID.getText());
             EstudiantesInterface estudiantesInterface = new EstudiantesDAO();
             try {

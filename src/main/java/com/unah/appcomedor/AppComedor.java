@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -26,6 +27,10 @@ public class AppComedor extends javax.swing.JFrame {
         initStyles();
         setDate();
         showJPanel(new Inicio());
+        ImageIcon icon = new ImageIcon(getClass().getResource("/iconoApp.png"));
+
+       // ImageIcon icon = new ImageIcon(getClass().getResource("/src/main/resources/cloche.png"));
+        setIconImage(icon.getImage());
     }
 
     private void initStyles() {

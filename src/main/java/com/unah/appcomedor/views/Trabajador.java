@@ -57,6 +57,10 @@ public class Trabajador extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        Background.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabelTitulo.setText("Verificar si el trabajdor puede pasar al comedor");
 
         jLabelID.setText("ID del Trabajador");
@@ -165,7 +169,7 @@ public class Trabajador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAceptarMouseClicked
-        if (Validar.esIdValido(jTextFieldID) == true) {
+        if (Validar.esValidoID(jTextFieldID) == true) {
             int idTrabajador = Integer.parseInt(jTextFieldID.getText());
             TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
 
@@ -203,7 +207,7 @@ public class Trabajador extends javax.swing.JPanel {
 
     private void jTextFieldIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (Validar.esIdValido(jTextFieldID) == true) {
+            if (Validar.esValidoID(jTextFieldID) == true) {
 
                 int idTrabajador = Integer.parseInt(jTextFieldID.getText());
                 TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();

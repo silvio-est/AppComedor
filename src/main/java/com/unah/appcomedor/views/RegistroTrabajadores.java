@@ -1,12 +1,11 @@
 package com.unah.appcomedor.views;
 
-import com.unah.appcomedor.DAO.EstudiantesDAO;
 import com.unah.appcomedor.DAO.TrabajadoresDAO;
-import com.unah.appcomedor.interfaces.EstudiantesInterface;
 import com.unah.appcomedor.interfaces.TrabajadoresInterface;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
+import validar.Validar;
 
 public class RegistroTrabajadores extends javax.swing.JPanel {
 
@@ -55,11 +54,14 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
         try {
             TrabajadoresInterface trabajadoresInterface = new TrabajadoresDAO();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            String nombreBuscar = jTextFieldID.getText();
-            model.setRowCount(0);
-            trabajadoresInterface.buscarNombre(nombreBuscar).forEach((u) -> model.addRow(new Object[]{
-                u.getId(), u.getNombre(),
-                u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo(), u.getPaso()}));
+
+            if (Validar.esValidoNombre(jTextFieldID)) {
+                String nombreBuscar = jTextFieldID.getText();
+                model.setRowCount(0);
+                trabajadoresInterface.buscarNombre(nombreBuscar).forEach((u) -> model.addRow(new Object[]{
+                    u.getId(), u.getNombre(),
+                    u.getPrimerApellido(), u.getSegundoApellido(), u.getTrabajo(), u.getPaso()}));
+            }
 
         } catch (Exception e) {
             System.out.println(e);
@@ -77,6 +79,8 @@ public class RegistroTrabajadores extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabelResumen = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jTextFieldID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

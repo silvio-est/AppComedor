@@ -61,6 +61,8 @@ public class Inicio extends javax.swing.JPanel {
         jLabelLogoUnah = new javax.swing.JLabel();
         jLabelLogoUnah1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         Background.setBackground(new java.awt.Color(255, 255, 255));
         Background.setPreferredSize(new java.awt.Dimension(780, 450));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

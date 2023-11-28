@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 
 public class Validar {
 
-    public static boolean esIdValido(JTextField textFild) {
+    public static boolean esValidoID(JTextField textFild) {
         String regex = "^[1-9]\\d*$";
         Pattern pattern = Pattern.compile(regex);
 
@@ -24,4 +24,20 @@ public class Validar {
         return false;
     }
 
+    public static boolean esValidoNombre(JTextField textFild) {
+        String regex = "^([A-Za-z]+|)$";
+        Pattern pattern = Pattern.compile(regex);
+
+        String textoValidar = textFild.getText();
+
+        Matcher matcher = pattern.matcher(textoValidar);
+
+        if (matcher.matches()) {
+            return true;
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe de introducir un Nombre valido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
 }
