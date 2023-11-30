@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface {
 
@@ -38,7 +39,8 @@ public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface
             st.close();
 
         } catch (Exception e) {
-            throw e;
+            JOptionPane.showMessageDialog(null, "Error al obtener la lista de trabajadores:", "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         } finally {
             this.Cerrar();
         }
@@ -71,7 +73,8 @@ public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface
             st.close();
 
         } catch (Exception e) {
-            throw e;
+            JOptionPane.showMessageDialog(null, "Error al buscar un trabajador por el nombre:", "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         } finally {
             this.Cerrar();
         }
@@ -120,7 +123,6 @@ public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface
             st.close();
 
         } catch (Exception e) {
-            throw e;
         } finally {
             this.Cerrar();
         }
@@ -150,7 +152,6 @@ public class TrabajadoresDAO extends ConexionBD implements TrabajadoresInterface
             st.close();
 
         } catch (Exception e) {
-            throw e;
         } finally {
             this.Cerrar();
         }

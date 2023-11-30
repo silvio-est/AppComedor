@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
 
@@ -39,7 +40,8 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
             st.close();
 
         } catch (Exception e) {
-            throw e;
+             JOptionPane.showMessageDialog(null, "Error al obtener la lista de estudiantes:", "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         } finally {
             this.Cerrar();
         }
@@ -73,7 +75,8 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
             st.close();
 
         } catch (Exception e) {
-            throw e;
+             JOptionPane.showMessageDialog(null, "Error al buscar un estudiante por el nombre:", "Error de base de datos", JOptionPane.ERROR_MESSAGE);
+
         } finally {
             this.Cerrar();
         }
@@ -104,7 +107,6 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
             st.close();
 
         } catch (Exception e) {
-            throw e;
         } finally {
             this.Cerrar();
         }
@@ -154,7 +156,6 @@ public class EstudiantesDAO extends ConexionBD implements EstudiantesInterface {
             st.close();
 
         } catch (Exception e) {
-            throw e;
         } finally {
             this.Cerrar();
         }

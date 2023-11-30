@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class ConexionBD {
     protected Connection conexion;
@@ -19,7 +20,8 @@ public class ConexionBD {
             conexion = DriverManager.getConnection(DB_URL, USER, PASS);
             Class.forName(JDBC_DRIVER);
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: Error de conexión");
+
         }
     }
     
